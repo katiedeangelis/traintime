@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Train Times</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/traintimes.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="assets/javascript/traintimes.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="main-body">
+                    <div class="jumbotron">
+                        <h1>Anytime Is Train Time</h1>
+                        <p>Chuga, Chuga, CHOO, CHOO!</p>
+                    </div>
+                    <div class="panel panel-default main-search-body">
+                        <div class="panel-heading main-search-form">
+                            <h3 class="panel-title">
+                                <i class="fa fa-folder-open" aria-hidden="true"></i> Current Train Schedule</h3>
+                        </div>
+                        <div class="panel-body main-articles">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Train Name</th>
+                                        <th>Destination</th>
+                                        <th>Frequency (Min)</th>
+                                        <th>Next Arrival</th>
+                                        <th>Minutes Away</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Trenton Express</td>
+                                        <td>Trenton</td>
+                                        <td>25</td>
+                                        <td>05:35 PM</td>
+                                        <td>10</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-default main-article-body">
+                        <div class="panel-heading top-article-header">
+                            <h3 class="panel-title">
+                                <i class="fa fa-file-text" aria-hidden="true"></i> Add Train</h3>
+                        </div>
+                        <div class="panel-body forminfo">
+                            <p class="search-term-text field">
+                                <lable>Train Name:</lable>
+                                <input type="text">
+                            </p>
+                            <p class="search-term-text field">
+                                <lable>Destination:</lable>
+                                <input type="text">
+                            </p>
+                            <p class="search-term-text field">
+                                <lable>First Train Time (HHMM Military Time):</lable>
+                                <input type="time">
+                            </p>
+                            <p class="search-term-text field">
+                                <lable>Frequency (Min):</lable>
+                                <input type="number">
+                            </p>
+                            <button type="button" class="btn btn-default">
+                                <i class="fa fa-search" aria-hidden="true"></i> Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="made-by">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
