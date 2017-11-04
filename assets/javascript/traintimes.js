@@ -19,6 +19,7 @@ var trainDestination = "";
 var trainFrequency = "";
 var trainTime = "";
 
+
 // Click Button changes what is stored in firebase
 function postTrainInfo() {
     $("#submit-button").on("click", function () {
@@ -38,6 +39,7 @@ function postTrainInfo() {
             trainTime: trainTime
         });
 
+        // Clear input fields after submission
         $("#train-name-input").val("");
         $("#train-destination-input").val("");
         $("#train-frequency-input").val("");
@@ -46,35 +48,46 @@ function postTrainInfo() {
     });
 
     // Firebase is always watching for changes to the data.
-    // When changes occurs it will print them to console
     database.ref().on("value", function (snapshot) {
-
-        // Print the initial data to the console.
-        console.log(snapshot.val());
 
         var trainData = snapshot.val();
 
+        // Empty train data table befor appending data from database
         $(".submitted-train-data").empty();
 
+        // Loop through the keys in database
         for (var key in trainData) {
+            // Define and assign a variable to each key
             var trainObject = trainData[key];
+            // Define and assign variable to current time
             var now = moment();
+            // Define and assign a variable for the initial train time
             var nextTrainTime = moment(trainObject.trainTime, "HH:mm");
-            console.log(now.to(nextTrainTime));
+            // Define and assign a variable for the minutes away based on the current time and next train time
+            var minutesAway = nextTrainTime.diff(now, 'minutes');
 
+            // While the minutes away variable is less than zero continue looping and adding the frequency
+            while (minutesAway < 0) {
+                nextTrainTime = moment(nextTrainTime).add(trainObject.trainFrequency, 'm');
+                minutesAway = nextTrainTime.diff(now, 'minutes');
+            }
+
+            // Create table row and table data elements with appropriate variable information
             var trainDataRow = $("<tr></tr>");
             var trainNameSubmitted = $("<td>" + trainObject.trainName + "</td>");
             var trainDestinationSubmitted = $("<td>" + trainObject.trainDestination + "</td>");
             var trainFrequencySubmitted = $("<td>" + trainObject.trainFrequency + "</td>");
-            var trainTimeSubmitted = $("<td>" + trainObject.trainTime + "</td>");
-            var trainMinutesSubmitted = $("<td></td>");
+            var trainTimeSubmitted = $("<td>" + moment(nextTrainTime).format("HH:mm") + "</td>");
+            var trainMinutesSubmitted = $("<td>" + minutesAway + "</td>");
 
+            // Append new data elements to new table row
             $(trainDataRow).append(trainNameSubmitted);
             $(trainDataRow).append(trainDestinationSubmitted);
             $(trainDataRow).append(trainFrequencySubmitted);
             $(trainDataRow).append(trainTimeSubmitted);
             $(trainDataRow).append(trainMinutesSubmitted);
 
+            // Append new row to train data table
             $(".submitted-train-data").append(trainDataRow);
         }
 
