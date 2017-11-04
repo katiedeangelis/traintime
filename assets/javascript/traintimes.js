@@ -97,4 +97,5 @@ function postTrainInfo() {
     });
 }
 
+// Windows load event
 $(window).load(postTrainInfo);
